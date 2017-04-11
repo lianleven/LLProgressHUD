@@ -13,13 +13,13 @@
 		5C7644A11E90F4DF00288043 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C76449F1E90F4DF00288043 /* Main.storyboard */; };
 		5C7644A31E90F4DF00288043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C7644A21E90F4DF00288043 /* Assets.xcassets */; };
 		5C7644A61E90F4DF00288043 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7644A41E90F4DF00288043 /* LaunchScreen.storyboard */; };
-		5C7644B01E90F54800288043 /* LLBarProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7644AF1E90F54800288043 /* LLBarProgressView.m */; };
-		5C7644B61E90F7FB00288043 /* LLRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7644B51E90F7FB00288043 /* LLRoundProgressView.m */; };
-		5C7644B91E90F92500288043 /* LLActivityindicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7644B81E90F92500288043 /* LLActivityindicatorView.m */; };
-		5C7644BC1E9103BD00288043 /* LLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7644BB1E9103BD00288043 /* LLProgressHUD.m */; };
-		5C7644BE1E910AFD00288043 /* LLProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C7644BD1E910AFD00288043 /* LLProgressHUD.bundle */; };
-		5CC423D91E9CA0C2009A0D54 /* LLTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423D81E9CA0C2009A0D54 /* LLTextLabel.m */; };
 		5CC423DB1E9CCBFA009A0D54 /* live.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC423DA1E9CCBFA009A0D54 /* live.png */; };
+		5CC423E81E9D1196009A0D54 /* LLActivityindicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423DE1E9D1196009A0D54 /* LLActivityindicatorView.m */; };
+		5CC423E91E9D1196009A0D54 /* LLBarProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423E01E9D1196009A0D54 /* LLBarProgressView.m */; };
+		5CC423EA1E9D1196009A0D54 /* LLProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5CC423E11E9D1196009A0D54 /* LLProgressHUD.bundle */; };
+		5CC423EB1E9D1196009A0D54 /* LLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423E31E9D1196009A0D54 /* LLProgressHUD.m */; };
+		5CC423EC1E9D1196009A0D54 /* LLRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423E51E9D1196009A0D54 /* LLRoundProgressView.m */; };
+		5CC423ED1E9D1196009A0D54 /* LLTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC423E71E9D1196009A0D54 /* LLTextLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,18 +33,18 @@
 		5C7644A21E90F4DF00288043 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C7644A51E90F4DF00288043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C7644A71E90F4DF00288043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C7644AE1E90F54800288043 /* LLBarProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBarProgressView.h; sourceTree = "<group>"; };
-		5C7644AF1E90F54800288043 /* LLBarProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBarProgressView.m; sourceTree = "<group>"; };
-		5C7644B41E90F7FB00288043 /* LLRoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRoundProgressView.h; sourceTree = "<group>"; };
-		5C7644B51E90F7FB00288043 /* LLRoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRoundProgressView.m; sourceTree = "<group>"; };
-		5C7644B71E90F92500288043 /* LLActivityindicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLActivityindicatorView.h; sourceTree = "<group>"; };
-		5C7644B81E90F92500288043 /* LLActivityindicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLActivityindicatorView.m; sourceTree = "<group>"; };
-		5C7644BA1E9103BD00288043 /* LLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLProgressHUD.h; sourceTree = "<group>"; };
-		5C7644BB1E9103BD00288043 /* LLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLProgressHUD.m; sourceTree = "<group>"; };
-		5C7644BD1E910AFD00288043 /* LLProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLProgressHUD.bundle; sourceTree = "<group>"; };
-		5CC423D71E9CA0C2009A0D54 /* LLTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTextLabel.h; sourceTree = "<group>"; };
-		5CC423D81E9CA0C2009A0D54 /* LLTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTextLabel.m; sourceTree = "<group>"; };
 		5CC423DA1E9CCBFA009A0D54 /* live.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = live.png; sourceTree = "<group>"; };
+		5CC423DD1E9D1196009A0D54 /* LLActivityindicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLActivityindicatorView.h; sourceTree = "<group>"; };
+		5CC423DE1E9D1196009A0D54 /* LLActivityindicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLActivityindicatorView.m; sourceTree = "<group>"; };
+		5CC423DF1E9D1196009A0D54 /* LLBarProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBarProgressView.h; sourceTree = "<group>"; };
+		5CC423E01E9D1196009A0D54 /* LLBarProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBarProgressView.m; sourceTree = "<group>"; };
+		5CC423E11E9D1196009A0D54 /* LLProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLProgressHUD.bundle; sourceTree = "<group>"; };
+		5CC423E21E9D1196009A0D54 /* LLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLProgressHUD.h; sourceTree = "<group>"; };
+		5CC423E31E9D1196009A0D54 /* LLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLProgressHUD.m; sourceTree = "<group>"; };
+		5CC423E41E9D1196009A0D54 /* LLRoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRoundProgressView.h; sourceTree = "<group>"; };
+		5CC423E51E9D1196009A0D54 /* LLRoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRoundProgressView.m; sourceTree = "<group>"; };
+		5CC423E61E9D1196009A0D54 /* LLTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTextLabel.h; sourceTree = "<group>"; };
+		5CC423E71E9D1196009A0D54 /* LLTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTextLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 		5C7644951E90F4DF00288043 /* LLProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				5C7644AD1E90F50900288043 /* LLProgressHUD */,
+				5CC423DC1E9D1196009A0D54 /* LLProgressHUD */,
 				5C7644991E90F4DF00288043 /* AppDelegate.h */,
 				5C76449A1E90F4DF00288043 /* AppDelegate.m */,
 				5CC423DA1E9CCBFA009A0D54 /* live.png */,
@@ -100,20 +100,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5C7644AD1E90F50900288043 /* LLProgressHUD */ = {
+		5CC423DC1E9D1196009A0D54 /* LLProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				5C7644BD1E910AFD00288043 /* LLProgressHUD.bundle */,
-				5C7644B71E90F92500288043 /* LLActivityindicatorView.h */,
-				5C7644B81E90F92500288043 /* LLActivityindicatorView.m */,
-				5C7644B41E90F7FB00288043 /* LLRoundProgressView.h */,
-				5C7644B51E90F7FB00288043 /* LLRoundProgressView.m */,
-				5CC423D71E9CA0C2009A0D54 /* LLTextLabel.h */,
-				5CC423D81E9CA0C2009A0D54 /* LLTextLabel.m */,
-				5C7644AE1E90F54800288043 /* LLBarProgressView.h */,
-				5C7644AF1E90F54800288043 /* LLBarProgressView.m */,
-				5C7644BA1E9103BD00288043 /* LLProgressHUD.h */,
-				5C7644BB1E9103BD00288043 /* LLProgressHUD.m */,
+				5CC423DD1E9D1196009A0D54 /* LLActivityindicatorView.h */,
+				5CC423DE1E9D1196009A0D54 /* LLActivityindicatorView.m */,
+				5CC423DF1E9D1196009A0D54 /* LLBarProgressView.h */,
+				5CC423E01E9D1196009A0D54 /* LLBarProgressView.m */,
+				5CC423E11E9D1196009A0D54 /* LLProgressHUD.bundle */,
+				5CC423E21E9D1196009A0D54 /* LLProgressHUD.h */,
+				5CC423E31E9D1196009A0D54 /* LLProgressHUD.m */,
+				5CC423E41E9D1196009A0D54 /* LLRoundProgressView.h */,
+				5CC423E51E9D1196009A0D54 /* LLRoundProgressView.m */,
+				5CC423E61E9D1196009A0D54 /* LLTextLabel.h */,
+				5CC423E71E9D1196009A0D54 /* LLTextLabel.m */,
 			);
 			path = LLProgressHUD;
 			sourceTree = "<group>";
@@ -177,10 +177,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC423EA1E9D1196009A0D54 /* LLProgressHUD.bundle in Resources */,
 				5C7644A61E90F4DF00288043 /* LaunchScreen.storyboard in Resources */,
 				5CC423DB1E9CCBFA009A0D54 /* live.png in Resources */,
 				5C7644A31E90F4DF00288043 /* Assets.xcassets in Resources */,
-				5C7644BE1E910AFD00288043 /* LLProgressHUD.bundle in Resources */,
 				5C7644A11E90F4DF00288043 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,14 +192,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C7644B91E90F92500288043 /* LLActivityindicatorView.m in Sources */,
-				5CC423D91E9CA0C2009A0D54 /* LLTextLabel.m in Sources */,
+				5CC423EB1E9D1196009A0D54 /* LLProgressHUD.m in Sources */,
 				5C76449E1E90F4DF00288043 /* ViewController.m in Sources */,
+				5CC423E81E9D1196009A0D54 /* LLActivityindicatorView.m in Sources */,
 				5C76449B1E90F4DF00288043 /* AppDelegate.m in Sources */,
-				5C7644BC1E9103BD00288043 /* LLProgressHUD.m in Sources */,
 				5C7644981E90F4DF00288043 /* main.m in Sources */,
-				5C7644B61E90F7FB00288043 /* LLRoundProgressView.m in Sources */,
-				5C7644B01E90F54800288043 /* LLBarProgressView.m in Sources */,
+				5CC423ED1E9D1196009A0D54 /* LLTextLabel.m in Sources */,
+				5CC423E91E9D1196009A0D54 /* LLBarProgressView.m in Sources */,
+				5CC423EC1E9D1196009A0D54 /* LLRoundProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
