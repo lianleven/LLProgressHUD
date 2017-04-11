@@ -1,2 +1,2 @@
 # LLProgressHUD
-LLProgressHUD 是改写 MBProgressHUD
+LLProgressHUD base on MBProgressHUD
