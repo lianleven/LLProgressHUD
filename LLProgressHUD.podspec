@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.platform     = :ios, '7.0'
   s.source_files = 'LLProgressHUD/**/*.{h,m}'
-  s.resource     = 'LLProgressHUD/LLProgressHUD/LLProgressHUD.bundle'
+  s.resource     = 'LLProgressHUD/LLProgressHUD.bundle'
   s.requires_arc = true
 end
 
