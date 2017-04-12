@@ -111,7 +111,6 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     _animationType = LLProgressHUDAnimationFade;
     _mode = LLProgressHUDModeIndeterminate;
 //    _minSize = CGSizeMake(100, 100);
-    _margin = 8.0f;
     _margin = 20.0f;
     _opacity = 1.f;
     _defaultMotionEffectsEnabled = YES;
@@ -331,7 +330,6 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     UIColor *defaultColor = self.contentColor;
 
     LLBackgroundView *backgroundView = [[LLBackgroundView alloc] initWithFrame:self.bounds];
-    backgroundView.style = LLProgressHUDBackgroundStyleSolidColor;
     backgroundView.backgroundColor = [UIColor clearColor];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     backgroundView.alpha = 0.f;
@@ -861,8 +859,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        _style = LLProgressHUDBackgroundStyleSolidColor;
-        _color = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        _color = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         self.clipsToBounds = YES;
 
         [self updateForBackgroundStyle];
@@ -878,13 +875,6 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 }
 
 #pragma mark - Appearance
-
-- (void)setStyle:(LLProgressHUDBackgroundStyle)style {
-    if (_style != style) {
-        _style = style;
-        [self updateForBackgroundStyle];
-    }
-}
 
 - (void)setColor:(UIColor *)color {
     NSAssert(color, @"The color should not be nil.");
@@ -973,15 +963,15 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
         afterDelay:0];
 }
 
-+ (instancetype)showProgress:(float)progress{
-    return [LLProgressHUD showProgress:progress text:@""];
++ (instancetype)showProgress{
+    return [LLProgressHUD showProgressText:@""];
     
 }
-+ (instancetype)showProgress:(float)progress text:(NSString*)text{
-    return [LLProgressHUD showProgress:progress text:text progressHUDMode:LLProgressHUDModeAnnularDeterminate];
++ (instancetype)showProgressText:(NSString*)text{
+    return [LLProgressHUD showProgressText:text progressHUDMode:LLProgressHUDModeAnnularDeterminate];
 }
-+ (instancetype)showProgress:(float)progress text:(NSString*)text progressHUDMode:(LLProgressHUDMode)mode{
-    return [self showText:text progress:progress image:nil customView:nil mode:mode afterDelay:0];
++ (instancetype)showProgressText:(NSString*)text progressHUDMode:(LLProgressHUDMode)mode{
+    return [self showText:text progress:0 image:nil customView:nil mode:mode afterDelay:0];
 }
 // stops the activity indicator, shows a glyph + text, and dismisses the HUD a little bit later
 + (instancetype)showText:(NSString *)text{

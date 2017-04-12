@@ -44,12 +44,6 @@ typedef NS_ENUM(NSInteger, LLProgressHUDAnimation) {
     /// Opacity + scale animation (zoom in style)
     LLProgressHUDAnimationZoomIn
 };
-
-typedef NS_ENUM(NSInteger, LLProgressHUDBackgroundStyle) {
-    /// Solid color background
-    LLProgressHUDBackgroundStyleSolidColor,
-};
-
 typedef void (^LLProgressHUDCompletionBlock)();
 
 
@@ -266,7 +260,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLBackgroundView : UIView
 
-@property (nonatomic) LLProgressHUDBackgroundStyle style;
 @property (nonatomic, strong) UIColor *color;
 
 @end
@@ -288,9 +281,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)showWarningText:(NSString*)text afterDelay:(NSTimeInterval)delay;
 + (instancetype)showCustomView:(UIView *)view text:(NSString *)text afterDelay:(NSTimeInterval)delay;
 + (instancetype)showImage:(UIImage*)image text:(NSString*)text;
-+ (instancetype)showProgress:(float)progress;///< default mode
-+ (instancetype)showProgress:(float)progress text:(NSString*)text;
-+ (instancetype)showProgress:(float)progress text:(NSString*)text progressHUDMode:(LLProgressHUDMode)mode;
++ (instancetype)showProgress;///< default mode
++ (instancetype)showProgressText:(NSString*)text;
++ (instancetype)showProgressText:(NSString*)text progressHUDMode:(LLProgressHUDMode)mode;
 + (instancetype)hide;
 
 @end
