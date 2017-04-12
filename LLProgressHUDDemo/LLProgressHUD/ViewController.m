@@ -60,6 +60,9 @@
       @[[MBExample exampleWithTitle:@"showText Center" selector:@selector(showTextCenter)],
         [MBExample exampleWithTitle:@"showText bottom" selector:@selector(showTextBottom)],
         [MBExample exampleWithTitle:@"showImage" selector:@selector(showImage)]],
+      @[[MBExample exampleWithTitle:@"showProgress" selector:@selector(showProgress)],
+        [MBExample exampleWithTitle:@"showProgress:text:" selector:@selector(showProgressText)],
+        [MBExample exampleWithTitle:@"showProgress mode" selector:@selector(showProgressMode)]],
       @[[MBExample exampleWithTitle:@"showSuccessText" selector:@selector(showSuccessText)],
         [MBExample exampleWithTitle:@"showErrorText" selector:@selector(showErrorText)],
         [MBExample exampleWithTitle:@"showWarningText" selector:@selector(showWarningText)]],
@@ -119,9 +122,44 @@
     NSBundle *buddle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ViewController class]] pathForResource:@"LLProgressHUD" ofType:@"bundle"]];
     UIImage *image = [UIImage imageWithContentsOfFile:[buddle pathForResource:@"warning" ofType:@"png"]];
     LLProgressHUD *hud = [LLProgressHUD showImage:image text:@"Message here!"];
-    hud.label.imageSize = CGSizeMake(30, 30);
+    hud.label.imageSize = CGSizeMake(18, 18);
     
 }
+- (void)showProgress{
+    LLProgressHUD *hud = [LLProgressHUD showProgress];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        // Do something useful in the background and update the HUD periodically.
+        [self doSomeWorkWithProgress];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+        });
+    });
+}
+- (void)showProgressText{
+    LLProgressHUD *hud = [LLProgressHUD showProgressText:NSLocalizedString(@"Loading...", @"HUD loading title")];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        // Do something useful in the background and update the HUD periodically.
+        [self doSomeWorkWithProgress];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+        });
+    });
+}
+- (void)showProgressMode{
+    LLProgressHUD *hud = [LLProgressHUD showProgress];
+    hud.mode = LLProgressHUDModeDeterminateHorizontalBar;
+    hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+    hud.label.image = [UIImage imageNamed:@"live"];
+//    LLProgressHUD *hud = [LLProgressHUD showProgress:0 text:NSLocalizedString(@"Loading...", @"HUD loading title") progressHUDMode:LLProgressHUDModeDeterminateHorizontalBar];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        // Do something useful in the background and update the HUD periodically.
+        [self doSomeWorkWithProgress];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+        });
+    });
+}
+
 - (void)showSuccessText{
     [LLProgressHUD showSuccessText:@"Request Success"];
 }
@@ -135,10 +173,9 @@
     [LLProgressHUD showCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"live"]] text:@"Custom View" afterDelay:3];
 }
 - (void)dimBackgroundExample {
-    LLProgressHUD *hud = [LLProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
-    // Change the background view style and color.
-    hud.backgroundView.style = LLProgressHUDBackgroundStyleSolidColor;
+    LLProgressHUD *hud = [LLProgressHUD show];
+    
     hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
@@ -150,12 +187,10 @@
 }
 
 - (void)colorExample {
-    LLProgressHUD *hud = [LLProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    LLProgressHUD *hud = [LLProgressHUD showLoadingText:NSLocalizedString(@"Loading...", @"HUD loading title")];
     hud.contentColor = [UIColor colorWithRed:0.f green:0.6f blue:0.7f alpha:1.f];
-    
-    // Set the label text.
-    hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
-    
+    hud.margin = 8;
+    hud.minSize = CGSizeMake(100, 100);
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{

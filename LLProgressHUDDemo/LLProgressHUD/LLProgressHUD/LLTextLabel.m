@@ -62,7 +62,7 @@
     if (!CGSizeEqualToSize(_imageSize, CGSizeZero)) {
         return _imageSize;
     }
-    return CGSizeMake(20, 20);
+    return CGSizeMake(18, 18);
 }
 + (NSAttributedString *)attachmentStringWithImage:(UIImage *)image
                                    attachmentSize:(CGSize)attachmentSize
