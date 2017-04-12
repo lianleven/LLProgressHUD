@@ -71,7 +71,9 @@
         ],
       @[
         [MBExample exampleWithTitle:@"Dim background" selector:@selector(dimBackgroundExample)],
-        [MBExample exampleWithTitle:@"Colored" selector:@selector(colorExample)]]
+        [MBExample exampleWithTitle:@"Colored" selector:@selector(colorExample)],
+        [MBExample exampleWithTitle:@"Loading Image" selector:@selector(LoadingImage)],
+        [MBExample exampleWithTitle:@"backgroundColor" selector:@selector(backgroundStyle)],]
       ];
 }
 - (void)viewDidLayoutSubviews{
@@ -175,9 +177,7 @@
 - (void)dimBackgroundExample {
     
     LLProgressHUD *hud = [LLProgressHUD show];
-    
     hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
-    
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -191,6 +191,29 @@
     hud.contentColor = [UIColor colorWithRed:0.f green:0.6f blue:0.7f alpha:1.f];
     hud.margin = 8;
     hud.minSize = CGSizeMake(100, 100);
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        [self doSomeWork];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+        });
+    });
+}
+- (void)LoadingImage{
+    LLProgressHUD *hud = [LLProgressHUD show];
+    
+    hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
+    hud.indicatorImage = [UIImage imageNamed:@"loading"];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        [self doSomeWork];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+        });
+    });
+}
+- (void)backgroundStyle{
+    LLProgressHUD *hud = [LLProgressHUD show];
+    hud.bezelView.color = [UIColor colorWithWhite:0.9 alpha:1];
+    hud.indicatorImage = [UIImage imageNamed:@"loading"];
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{

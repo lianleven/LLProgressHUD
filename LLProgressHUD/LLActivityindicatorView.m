@@ -55,6 +55,10 @@
     self.transform = CGAffineTransformRotate(self.transform, M_PI / 30.0);
 }
 #pragma mark - Getters and Setters
+- (void)setLoadingImage:(UIImage *)loadingImage{
+    _loadingImage = loadingImage;
+    self.loadingView.image = loadingImage;
+}
 - (void)setColor:(UIColor *)color{
     if (![_color isEqual:color] ) {
         _color = color;

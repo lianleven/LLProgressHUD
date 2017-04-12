@@ -20,6 +20,7 @@
 		5CC4240F1E9DCEA7009A0D54 /* LLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC424071E9DCEA7009A0D54 /* LLProgressHUD.m */; };
 		5CC424101E9DCEA7009A0D54 /* LLRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC424091E9DCEA7009A0D54 /* LLRoundProgressView.m */; };
 		5CC424111E9DCEA7009A0D54 /* LLTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC4240B1E9DCEA7009A0D54 /* LLTextLabel.m */; };
+		5CC424131E9DD3B6009A0D54 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC424121E9DD3B6009A0D54 /* loading.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		5CC424091E9DCEA7009A0D54 /* LLRoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRoundProgressView.m; sourceTree = "<group>"; };
 		5CC4240A1E9DCEA7009A0D54 /* LLTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTextLabel.h; sourceTree = "<group>"; };
 		5CC4240B1E9DCEA7009A0D54 /* LLTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTextLabel.m; sourceTree = "<group>"; };
+		5CC424121E9DD3B6009A0D54 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				5C7644991E90F4DF00288043 /* AppDelegate.h */,
 				5C76449A1E90F4DF00288043 /* AppDelegate.m */,
 				5CC423DA1E9CCBFA009A0D54 /* live.png */,
+				5CC424121E9DD3B6009A0D54 /* loading.png */,
 				5C76449C1E90F4DF00288043 /* ViewController.h */,
 				5C76449D1E90F4DF00288043 /* ViewController.m */,
 				5C76449F1E90F4DF00288043 /* Main.storyboard */,
@@ -178,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC424131E9DD3B6009A0D54 /* loading.png in Resources */,
 				5CC4240E1E9DCEA7009A0D54 /* LLProgressHUD.bundle in Resources */,
 				5C7644A61E90F4DF00288043 /* LaunchScreen.storyboard in Resources */,
 				5CC423DB1E9CCBFA009A0D54 /* live.png in Resources */,

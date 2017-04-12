@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, LLActivityindicatorViewStyle) {
 @property (nonatomic, readonly, strong) UIActivityIndicatorView *activityIndicatorView;
 @property(nonatomic) BOOL  hidesWhenStopped;           // default is YES.
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) UIImage *loadingImage;
 
 - (void)startAnimating;
 - (void)stopAnimating;

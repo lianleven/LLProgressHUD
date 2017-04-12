@@ -209,6 +209,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong, nonatomic, nullable) NSProgress *progressObject;
 
+@property (nonatomic, strong) UIImage *indicatorImage;
+
 /// @name Views
 
 /**

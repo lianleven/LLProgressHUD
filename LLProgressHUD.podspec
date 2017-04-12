@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LLProgressHUD"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "An iOS activity indicator view."
   s.description  = <<-DESC
                     LLProgressHUD is an iOS drop-in class that displays a translucent HUD 
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/lianleven/LLProgressHUD"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.author       = { 'leven' => 'lianleven@163.com' }
+  s.author       = { 'lianleven' => 'lianleven@163.com' }
   s.source       = { :git => "https://github.com/lianleven/LLProgressHUD.git", :tag => s.version.to_s }
   s.ios.deployment_target = '7.0'
   s.platform     = :ios, '7.0'
