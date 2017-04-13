@@ -213,7 +213,7 @@
 - (void)backgroundStyle{
     LLProgressHUD *hud = [LLProgressHUD show];
     hud.bezelView.color = [UIColor colorWithWhite:0.9 alpha:1];
-    hud.indicatorImage = [UIImage imageNamed:@"loading"];
+    hud.contentColor = [UIColor blackColor];
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{

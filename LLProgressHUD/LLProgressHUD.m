@@ -110,7 +110,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     // Set default values for properties
     _animationType = LLProgressHUDAnimationFade;
     _mode = LLProgressHUDModeIndeterminate;
-    _minSize = CGSizeMake(80, 80);
+//    _minSize = CGSizeMake(80, 80);
     _margin = 20.0f;
     _opacity = 1.f;
     _defaultMotionEffectsEnabled = YES;
