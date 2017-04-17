@@ -282,6 +282,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)showWarningText:(NSString*)text;///< default delay 2.0 hide.
 + (instancetype)showWarningText:(NSString*)text afterDelay:(NSTimeInterval)delay;
 + (instancetype)showCustomView:(UIView *)view text:(NSString *)text afterDelay:(NSTimeInterval)delay;
++ (instancetype)showTextSuccess:(NSString*)text;
++ (instancetype)showTextWarning:(NSString*)text;
++ (instancetype)showTextError:(NSString*)text;
 + (instancetype)showImage:(UIImage*)image text:(NSString*)text;
 + (instancetype)showProgress;///< default mode
 + (instancetype)showProgressText:(NSString*)text;

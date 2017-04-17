@@ -1021,6 +1021,18 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 }
 
 // shows a image + text
++ (instancetype)showTextSuccess:(NSString*)text;{
+    UIImage *image = [LLProgressHUD imageBuddleName:@"Checkmark"];
+    return [LLProgressHUD showImage:image text:text];
+}
++ (instancetype)showTextWarning:(NSString*)text;{
+    UIImage *image = [LLProgressHUD imageBuddleName:@"warning"];
+    return [LLProgressHUD showImage:image text:text];
+}
++ (instancetype)showTextError:(NSString*)text;{
+    UIImage *image = [LLProgressHUD imageBuddleName:@"error"];
+    return [LLProgressHUD showImage:image text:text];
+}
 + (instancetype)showImage:(UIImage*)image text:(NSString*)text;{
     return [self showText:text
           progress:0
