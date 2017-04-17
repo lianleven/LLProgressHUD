@@ -59,6 +59,9 @@
         ],
       @[[MBExample exampleWithTitle:@"showText Center" selector:@selector(showTextCenter)],
         [MBExample exampleWithTitle:@"showText bottom" selector:@selector(showTextBottom)],
+        [MBExample exampleWithTitle:@"showTextSuccess" selector:@selector(showTextSuccess)],
+        [MBExample exampleWithTitle:@"showTextError" selector:@selector(showTextError)],
+        [MBExample exampleWithTitle:@"showTextWarning" selector:@selector(showTextWarning)],
         [MBExample exampleWithTitle:@"showImage" selector:@selector(showImage)]],
       @[[MBExample exampleWithTitle:@"showProgress" selector:@selector(showProgress)],
         [MBExample exampleWithTitle:@"showProgress:text:" selector:@selector(showProgressText)],
@@ -119,6 +122,17 @@
 - (void)showTextBottom{
     LLProgressHUD *hud = [LLProgressHUD showText:@"Text's Position is Center"];
     hud.offset = CGPointMake(0, LLProgressMaxOffset);
+}
+- (void)showTextSuccess{
+    LLProgressHUD *hud = [LLProgressHUD showTextSuccess:@"Loading Finished"];
+    hud.label.imageTintColor = [UIColor greenColor];
+}
+- (void)showTextError{
+    LLProgressHUD *hud = [LLProgressHUD showTextError:@"Loading Error"];
+    hud.label.imageTintColor = [UIColor redColor];
+}
+- (void)showTextWarning{
+    [LLProgressHUD showTextWarning:@"Loading Warning"];
 }
 - (void)showImage {
     NSBundle *buddle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ViewController class]] pathForResource:@"LLProgressHUD" ofType:@"bundle"]];

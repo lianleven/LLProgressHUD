@@ -27,10 +27,15 @@
         
         NSAttributedString *attachmentString = nil;
         if (_image) {
+            if (self.imageTintColor && _image) {
+                _image = [LLTextLabel colorImage:_image color:_imageTintColor];
+            }
             attachmentString = [LLTextLabel attachmentStringWithImage:_image attachmentSize:self.imageSize font:font];
+            
         }
         if (attachmentString) {
             [text appendAttributedString:attachmentString];
+            [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, text.length)];
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
         }
         if (self.text && [self.text isKindOfClass:[NSString class]]) {
@@ -43,6 +48,11 @@
 
 - (void)setImage:(UIImage *)image{
     _image = image;
+    
+    [self updateAttributedText];
+}
+- (void)setImageTintColor:(UIColor *)imageTintColor{
+    _imageTintColor = imageTintColor;
     [self updateAttributedText];
 }
 - (void)setImageSize:(CGSize)imageSize{
@@ -78,6 +88,27 @@
     
     return [NSAttributedString attributedStringWithAttachment:attachment];
     
+}
++ (UIImage *)colorImage:(UIImage *)image color:(UIColor *)color
+{
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, 0, image.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGContextDrawImage(context, rect, image.CGImage);
+    CGContextSetBlendMode(context, kCGBlendModeSourceIn);
+    [color setFill];
+    CGContextFillRect(context, rect);
+    
+    
+    UIImage *coloredImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return coloredImage;
 }
 
 @end

@@ -995,6 +995,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 }
 + (instancetype)showSuccessText:(NSString*)text afterDelay:(NSTimeInterval)delay{
     UIImage *image = [LLProgressHUD imageBuddleName:@"Checkmark"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [LLProgressHUD showCustomView:[[UIImageView alloc] initWithImage:image] text:text afterDelay:delay];
 }
 + (instancetype)showErrorText:(NSString*)text{
@@ -1002,6 +1003,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 }
 + (instancetype)showErrorText:(NSString*)text afterDelay:(NSTimeInterval)delay;{
     UIImage *image = [LLProgressHUD imageBuddleName:@"error"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [LLProgressHUD showCustomView:[[UIImageView alloc] initWithImage:image] text:text afterDelay:delay];
 }
 + (instancetype)showWarningText:(NSString*)text{
@@ -1009,6 +1011,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 }
 + (instancetype)showWarningText:(NSString*)text afterDelay:(NSTimeInterval)delay;{
     UIImage *image = [LLProgressHUD imageBuddleName:@"warning"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [LLProgressHUD showCustomView:[[UIImageView alloc] initWithImage:image] text:text afterDelay:delay];
 }
 + (instancetype)showCustomView:(UIView *)view text:(NSString *)text afterDelay:(NSTimeInterval)delay{
@@ -1023,6 +1026,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 // shows a image + text
 + (instancetype)showTextSuccess:(NSString*)text;{
     UIImage *image = [LLProgressHUD imageBuddleName:@"Checkmark"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     return [LLProgressHUD showImage:image text:text];
 }
 + (instancetype)showTextWarning:(NSString*)text;{
@@ -1076,7 +1080,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 + (UIImage *)imageBuddleName:(NSString *)imageName{
     NSBundle *buddle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[LLProgressHUD class]] pathForResource:@"LLProgressHUD" ofType:@"bundle"]];
     UIImage *image = [UIImage imageWithContentsOfFile:[buddle pathForResource:imageName ofType:@"png"]];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
     return image;
 }
 
