@@ -45,7 +45,7 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    [LLProgressHUDConfigure sharedConfigure].indicatorImage = [UIImage imageNamed:@"loading"];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -126,6 +126,9 @@
 - (void)showTextSuccess{
     LLProgressHUD *hud = [LLProgressHUD showTextSuccess:@"Loading Finished"];
     hud.label.imageTintColor = [UIColor greenColor];
+    hud.completionBlock = ^{
+        NSLog(@"12312");
+    };
 }
 - (void)showTextError{
     LLProgressHUD *hud = [LLProgressHUD showTextError:@"Loading Error"];

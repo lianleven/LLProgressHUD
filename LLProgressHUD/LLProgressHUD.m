@@ -140,7 +140,6 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     }
     return self;
 }
-
 - (id)initWithView:(UIView *)view {
     NSAssert(view, @"View must not be nil.");
     return [self initWithFrame:view.bounds];
@@ -400,6 +399,10 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
             // Update to indeterminate indicator
             [indicator removeFromSuperview];
             indicator = [[LLActivityindicatorView alloc] init];
+            if ([LLProgressHUDConfigure sharedConfigure].indicatorImage) {
+                ((LLActivityindicatorView *)indicator).loadingImage = [LLProgressHUDConfigure sharedConfigure].indicatorImage;
+            }
+            
             [(LLActivityindicatorView *)indicator startAnimating];
             [self.bezelView addSubview:indicator];
         }
@@ -952,6 +955,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     self.backgroundColor = highlighted ? [baseColor colorWithAlphaComponent:0.1f] : [UIColor clearColor];
 }
 @end
+
 @implementation LLProgressHUD (Simple)
 
 #pragma mark - Show Methods on window
@@ -1037,23 +1041,22 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     UIImage *image = [LLProgressHUD imageBuddleName:@"error"];
     return [LLProgressHUD showImage:image text:text];
 }
-+ (instancetype)showImage:(UIImage*)image text:(NSString*)text;{
++ (instancetype)showImage:(UIImage*)image text:(NSString*)text{
+    return [LLProgressHUD showImage:image text:text afterDelay:1.5];
+}
++ (instancetype)showImage:(UIImage*)image text:(NSString*)text afterDelay:(NSTimeInterval)delay;{
     return [self showText:text
           progress:0
              image:image
         customView:nil
               mode:LLProgressHUDModeText
-        afterDelay:2.5];
+        afterDelay:delay];
 }
 
 + (instancetype)hide{
     LLProgressHUD *hud = [LLProgressHUD HUDForWindow];
     [hud hideAnimated:YES];
     return hud;
-}
-#pragma mark - private
-+ (void)setText:(NSString*)text;{
-    
 }
 + (instancetype)showText:(NSString *)text
         progress:(float)progress
@@ -1075,6 +1078,9 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     if (afterDelay > 0) {
         [hud hideAnimated:YES afterDelay:afterDelay];
     }
+    if (mode == LLProgressHUDModeText) {
+        hud.margin = 8;
+    }
     return hud;
 }
 + (UIImage *)imageBuddleName:(NSString *)imageName{
@@ -1082,6 +1088,24 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     UIImage *image = [UIImage imageWithContentsOfFile:[buddle pathForResource:imageName ofType:@"png"]];
     
     return image;
+}
+#pragma mark -
+@end
+
+@implementation LLProgressHUDConfigure
+
++ (instancetype)sharedConfigure{
+    static LLProgressHUDConfigure *configure = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        configure = [LLProgressHUDConfigure new];
+    });
+    return configure;
+}
+
+#pragma mark - Setter
+- (void)setIndicatorImage:(UIImage *)indicatorImage{
+    _indicatorImage = indicatorImage;
 }
 
 @end

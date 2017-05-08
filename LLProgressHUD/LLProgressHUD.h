@@ -13,6 +13,14 @@
 #import "LLBarProgressView.h"
 #import "LLTextLabel.h"
 
+@interface LLProgressHUDConfigure : NSObject
+
++ (nonnull instancetype)sharedConfigure;
+
+@property (nullable, nonatomic, strong) UIImage *indicatorImage;
+
+@end
+
 @class LLBackgroundView;
 @protocol LLProgressHUDDelegate;
 
@@ -282,14 +290,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)showWarningText:(NSString*)text;///< default delay 2.0 hide.
 + (instancetype)showWarningText:(NSString*)text afterDelay:(NSTimeInterval)delay;
 + (instancetype)showCustomView:(UIView *)view text:(NSString *)text afterDelay:(NSTimeInterval)delay;
-+ (instancetype)showTextSuccess:(NSString*)text;
++ (instancetype)showTextSuccess:(NSString*)text;///< default delay 1.5 hide.
 + (instancetype)showTextWarning:(NSString*)text;
 + (instancetype)showTextError:(NSString*)text;
 + (instancetype)showImage:(UIImage*)image text:(NSString*)text;
++ (instancetype)showImage:(UIImage*)image text:(NSString*)text afterDelay:(NSTimeInterval)delay;
 + (instancetype)showProgress;///< default mode
 + (instancetype)showProgressText:(NSString*)text;
 + (instancetype)showProgressText:(NSString*)text progressHUDMode:(LLProgressHUDMode)mode;
 + (instancetype)hide;
+
++ (instancetype)showText:(nullable NSString *)text
+                progress:(float)progress
+                   image:(nullable UIImage *)image
+              customView:(nullable UIView *)view
+                    mode:(LLProgressHUDMode)mode
+              afterDelay:(NSTimeInterval)afterDelay;
 
 @end
 NS_ASSUME_NONNULL_END
