@@ -35,6 +35,14 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     }
 }
 
+static inline void dispatch_sync_main_queue(void (^block)()) {
+    if (pthread_main_np()) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
 @interface LLProgressHUD ()
 
 @property (nonatomic, assign) BOOL useAnimation;
@@ -67,6 +75,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 
 + (instancetype)HUDAddedToWindow{
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    
     LLProgressHUD *hud = [LLProgressHUD showHUDAddedTo:window animated:YES];
     return hud;
 }
@@ -79,7 +88,9 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 + (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
     LLProgressHUD *hud = [[self alloc] initWithView:view];
     hud.removeFromSuperViewOnHide = YES;
-    [view addSubview:hud];
+    dispatch_sync_main_queue(^{
+        [view addSubview:hud];
+    });
     [hud showAnimated:animated];
     return hud;
 }
@@ -575,11 +586,12 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 
     // Ensure minimum side margin is kept
     NSMutableArray *sideConstraints = [NSMutableArray array];
-    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
-    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
-    [self applyPriority:999.f toConstraints:sideConstraints];
-    [self addConstraints:sideConstraints];
-
+    if (bezel.superview) {
+        [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
+        [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
+        [self applyPriority:999.f toConstraints:sideConstraints];
+        [self addConstraints:sideConstraints];
+    }
     // Minimum bezel size, if set
     CGSize minimumSize = self.minSize;
     if (!CGSizeEqualToSize(minimumSize, CGSizeZero)) {
@@ -606,24 +618,27 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
     // Layout subviews in bezel
     NSMutableArray *paddingConstraints = [NSMutableArray new];
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        // Center in bezel
-        [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f]];
-        // Ensure the minimum edge margin is kept
-        [bezelConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[view]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(view)]];
-        // Element spacing
-        if (idx == 0) {
-            // First, ensure spacing to bezel edge
-            [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeTop multiplier:1.f constant:0.f]];
-        } else if (idx == subviews.count - 1) {
-            // Last, ensure spacing to bezel edge
-            [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
+        if (view.superview) {
+            // Center in bezel
+            [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f]];
+            // Ensure the minimum edge margin is kept
+            [bezelConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[view]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(view)]];
+            // Element spacing
+            if (idx == 0) {
+                // First, ensure spacing to bezel edge
+                [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeTop multiplier:1.f constant:0.f]];
+            } else if (idx == subviews.count - 1) {
+                // Last, ensure spacing to bezel edge
+                [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
+            }
+            if (idx > 0) {
+                // Has previous
+                NSLayoutConstraint *padding = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:subviews[idx - 1] attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f];
+                [bezelConstraints addObject:padding];
+                [paddingConstraints addObject:padding];
+            }
         }
-        if (idx > 0) {
-            // Has previous
-            NSLayoutConstraint *padding = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:subviews[idx - 1] attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f];
-            [bezelConstraints addObject:padding];
-            [paddingConstraints addObject:padding];
-        }
+        
     }];
 
     [bezel addConstraints:bezelConstraints];
@@ -1107,5 +1122,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 - (void)setIndicatorImage:(UIImage *)indicatorImage{
     _indicatorImage = indicatorImage;
 }
+
+
 
 @end
