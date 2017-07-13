@@ -19,6 +19,14 @@
 
 @synthesize imageSize = _imageSize;
 
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _spacing = 8;
+    }
+    return self;
+}
+
 - (void)updateAttributedText{
     UIFont *font = self.font;
     if (!font) font = [UIFont systemFontOfSize:12];
@@ -30,13 +38,15 @@
             if (self.imageTintColor && _image) {
                 _image = [LLTextLabel colorImage:_image color:_imageTintColor];
             }
-            attachmentString = [LLTextLabel attachmentStringWithImage:_image attachmentSize:self.imageSize font:font];
+            attachmentString = [LLTextLabel attachmentStringWithImage:_image attachmentSize:self.imageSize font:font spacing:self.spacing];
             
         }
         if (attachmentString) {
             [text appendAttributedString:attachmentString];
             [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, text.length)];
-            [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+//            for (int i = 0; i < [self spaces]; i++) {
+//                [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+//            }
         }
         if (self.text && [self.text isKindOfClass:[NSString class]]) {
             [text appendAttributedString:[[NSAttributedString alloc] initWithString:self.text]];
@@ -44,11 +54,45 @@
     }
     self.attributedText = text;
 }
+#pragma mark - action
+- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode text:(NSString *)text{
+    CGSize result;
+    if (!font) font = [UIFont systemFontOfSize:12];
+    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableDictionary *attr = [NSMutableDictionary new];
+        attr[NSFontAttributeName] = font;
+        if (lineBreakMode != NSLineBreakByWordWrapping) {
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineBreakMode = lineBreakMode;
+            attr[NSParagraphStyleAttributeName] = paragraphStyle;
+        }
+        CGRect rect = [text boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:attr context:nil];
+        result = rect.size;
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        result = [text sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
+    }
+    return result;
+}
+
+- (CGFloat)widthForFont:(UIFont *)font text:(NSString *)text{
+    CGSize size = [self sizeForFont:font size:CGSizeMake(HUGE, HUGE) mode:NSLineBreakByWordWrapping text:text];
+    return size.width;
+}
+
 #pragma mark - Setters
 
 - (void)setImage:(UIImage *)image{
     _image = image;
     
+    [self updateAttributedText];
+}
+- (void)setSpacing:(CGFloat)spacing{
+    _spacing = spacing;
     [self updateAttributedText];
 }
 - (void)setImageTintColor:(UIColor *)imageTintColor{
@@ -76,7 +120,8 @@
 }
 + (NSAttributedString *)attachmentStringWithImage:(UIImage *)image
                                    attachmentSize:(CGSize)attachmentSize
-                                             font:(UIFont *)font{
+                                             font:(UIFont *)font
+                                          spacing:(CGFloat)spacing{
     CGFloat fontHeight = font.ascender - font.descender;
     CGFloat yOffset = font.ascender - fontHeight * 0.5;
     CGFloat ascent = attachmentSize.height * 0.5 + yOffset;
@@ -84,7 +129,7 @@
     
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = image;
-    attachment.bounds = CGRectMake(0, descent, attachmentSize.width, attachmentSize.height);
+    attachment.bounds = CGRectMake(-spacing, descent, attachmentSize.width, attachmentSize.height);
     
     return [NSAttributedString attributedStringWithAttachment:attachment];
     

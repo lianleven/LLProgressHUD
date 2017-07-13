@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) CGSize imageSize;
+@property (nonatomic, assign) CGFloat spacing; ///< default is " " width
 @property (nonatomic, strong) UIColor *imageTintColor; ///< default is nil
 
 

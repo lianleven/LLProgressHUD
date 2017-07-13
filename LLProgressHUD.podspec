@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'LLProgressHUD'
-  s.version      = '1.0.1'
+  s.version      = '1.1.0'
   s.summary      = 'An iOS activity indicator view.'
   s.homepage     = 'https://github.com/lianleven/LLProgressHUD'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
