@@ -18,6 +18,7 @@
 + (nonnull instancetype)sharedConfigure;
 
 @property (nullable, nonatomic, strong) UIImage *indicatorImage;
+@property (nonatomic, assign) NSTimeInterval maxShowTime;
 @property (nullable, nonatomic, strong) UIColor *contentColor;
 @property (nullable, nonatomic, strong) UIColor *backgroundColor;
 

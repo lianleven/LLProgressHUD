@@ -94,6 +94,7 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     if ([LLProgressHUDConfigure sharedConfigure].contentColor) {
         hud.contentColor = [UIColor blackColor];
     }
+    
     dispatch_sync_main_queue(^{
         [view addSubview:hud];
     });
@@ -1098,6 +1099,10 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     hud.mode = mode;
     if (afterDelay > 0) {
         [hud hideAnimated:YES afterDelay:afterDelay];
+    }else{
+        if ([LLProgressHUDConfigure sharedConfigure].maxShowTime > 0) {
+            [hud hideAnimated:YES afterDelay:[LLProgressHUDConfigure sharedConfigure].maxShowTime];
+        }
     }
     if (mode == LLProgressHUDModeText) {
         hud.margin = 8;
@@ -1127,6 +1132,9 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 #pragma mark - Setter
 - (void)setIndicatorImage:(UIImage *)indicatorImage{
     _indicatorImage = indicatorImage;
+}
+- (void)setMaxShowTime:(NSTimeInterval)maxShowTime{
+    _maxShowTime = maxShowTime;
 }
 - (void)setContentColor:(UIColor *)contentColor{
     _contentColor = contentColor;

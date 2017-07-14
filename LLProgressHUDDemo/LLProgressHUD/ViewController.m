@@ -98,7 +98,7 @@
         // IMPORTANT - Dispatch back to the main thread. Always access UI
         // classes (including LLProgressHUD) on the main thread.
         dispatch_async(dispatch_get_main_queue(), ^{
-            [LLProgressHUD hide];
+//            [LLProgressHUD hide];
         });
     });
     
@@ -112,7 +112,7 @@
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [LLProgressHUD hide];
+//            [LLProgressHUD hide];
         });
     });
 }
