@@ -88,6 +88,12 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 + (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
     LLProgressHUD *hud = [[self alloc] initWithView:view];
     hud.removeFromSuperViewOnHide = YES;
+    if ([LLProgressHUDConfigure sharedConfigure].backgroundColor) {
+        hud.bezelView.color = [UIColor colorWithWhite:0.9 alpha:1];
+    }
+    if ([LLProgressHUDConfigure sharedConfigure].contentColor) {
+        hud.contentColor = [UIColor blackColor];
+    }
     dispatch_sync_main_queue(^{
         [view addSubview:hud];
     });
@@ -1122,6 +1128,13 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 - (void)setIndicatorImage:(UIImage *)indicatorImage{
     _indicatorImage = indicatorImage;
 }
+- (void)setContentColor:(UIColor *)contentColor{
+    _contentColor = contentColor;
+}
+- (void)setBackgroundColor:(UIColor *)backgroundColor{
+    _backgroundColor = backgroundColor;
+}
+
 
 
 

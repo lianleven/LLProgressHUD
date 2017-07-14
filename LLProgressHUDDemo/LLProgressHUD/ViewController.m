@@ -229,7 +229,7 @@
 }
 - (void)backgroundStyle{
     LLProgressHUD *hud = [LLProgressHUD show];
-    hud.bezelView.color = [UIColor colorWithWhite:0.9 alpha:1];
+    hud.bezelView.color = [UIColor colorWithWhite:0.6 alpha:1];
     hud.contentColor = [UIColor blackColor];
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];

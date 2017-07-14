@@ -18,6 +18,8 @@
 + (nonnull instancetype)sharedConfigure;
 
 @property (nullable, nonatomic, strong) UIImage *indicatorImage;
+@property (nullable, nonatomic, strong) UIColor *contentColor;
+@property (nullable, nonatomic, strong) UIColor *backgroundColor;
 
 @end
 

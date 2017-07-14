@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LLProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [LLProgressHUDConfigure sharedConfigure].contentColor = [UIColor blackColor];
+    [LLProgressHUDConfigure sharedConfigure].backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    
     return YES;
 }
 
