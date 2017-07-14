@@ -1100,7 +1100,7 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     if (afterDelay > 0) {
         [hud hideAnimated:YES afterDelay:afterDelay];
     }else{
-        if ([LLProgressHUDConfigure sharedConfigure].maxShowTime > 0) {
+        if ([LLProgressHUDConfigure sharedConfigure].maxShowTime > 0 && mode == LLProgressHUDModeIndeterminate) {
             [hud hideAnimated:YES afterDelay:[LLProgressHUDConfigure sharedConfigure].maxShowTime];
         }
     }
