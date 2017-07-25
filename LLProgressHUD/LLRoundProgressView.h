@@ -18,6 +18,8 @@
  */
 @property (nonatomic, assign) float progress;
 
+@property (nonatomic, assign) float lineWidth; ///< default is 2.0
+
 /**
  * Indicator progress color.
  * Defaults to white [UIColor whiteColor].
