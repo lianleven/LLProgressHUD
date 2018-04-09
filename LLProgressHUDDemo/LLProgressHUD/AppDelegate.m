@@ -18,9 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [LLProgressHUDConfigure sharedConfigure].contentColor = [UIColor blackColor];
-    [LLProgressHUDConfigure sharedConfigure].backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    [LLProgressHUDConfigure sharedConfigure].maxShowTime = 2;
+    
+    [LLProgressHUDConfigure sharedConfigure].maxShowTime = 5;
     
     return YES;
 }

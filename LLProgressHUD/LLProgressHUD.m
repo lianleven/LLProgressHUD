@@ -86,13 +86,14 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 }
 
 + (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
+    [LLProgressHUD hideAllForView:view];
     LLProgressHUD *hud = [[self alloc] initWithView:view];
     hud.removeFromSuperViewOnHide = YES;
     if ([LLProgressHUDConfigure sharedConfigure].backgroundColor) {
-        hud.bezelView.color = [UIColor colorWithWhite:0.9 alpha:1];
+        hud.bezelView.color = [LLProgressHUDConfigure sharedConfigure].backgroundColor;
     }
     if ([LLProgressHUDConfigure sharedConfigure].contentColor) {
-        hud.contentColor = [UIColor blackColor];
+        hud.contentColor = [LLProgressHUDConfigure sharedConfigure].contentColor;
     }
     
     dispatch_sync_main_queue(^{
@@ -187,7 +188,13 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     });
     
 }
-
++ (void)hideAllForView:(UIView *)view{
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LLProgressHUD class]]) {
+            [(LLProgressHUD *)obj hideAnimated:NO];
+        }
+    }];
+}
 - (void)hideAnimated:(BOOL)animated {
     dispatch_async_on_main_queue(^{
         [self.graceTimer invalidate];
@@ -1080,6 +1087,7 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     [hud hideAnimated:YES];
     return hud;
 }
+
 + (instancetype)showText:(NSString *)text
         progress:(float)progress
            image:(UIImage *)image

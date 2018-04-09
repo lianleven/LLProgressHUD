@@ -90,6 +90,7 @@
 - (void)show {
 
     [LLProgressHUD show];
+    [LLProgressHUD showText:@"dafafasfasfas" afterDelay:1];
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         
         // Do something useful in the background
@@ -243,7 +244,7 @@
 
 - (void)doSomeWork {
     // Simulate by just waiting.
-    sleep(3.);
+    sleep(5.);
 }
 
 - (void)doSomeWorkWithProgressObject:(NSProgress *)progressObject {
