@@ -55,7 +55,10 @@ typedef NS_ENUM(NSInteger, LLProgressHUDAnimation) {
     /// Opacity + scale animation (zoom in style)
     LLProgressHUDAnimationZoomIn
 };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 typedef void (^LLProgressHUDCompletionBlock)();
+#pragma clang diagnostic pop
 
 
 NS_ASSUME_NONNULL_BEGIN
