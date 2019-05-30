@@ -45,7 +45,7 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [LLProgressHUDConfigure sharedConfigure].indicatorImage = [UIImage imageNamed:@"loading"];
+    [LLProgressHUDConfigure sharedConfigure].indicatorImage = [UIImage imageNamed:@"Loading"];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -136,7 +136,7 @@
     hud.label.imageTintColor = [UIColor redColor];
 }
 - (void)showTextWarning{
-    [LLProgressHUD showTextWarning:@"Loading Warning"];
+    [LLProgressHUD showTextWarning:@"Loading Warning"].label.imageTintColor = UIColor.yellowColor;
 }
 - (void)showImage {
     NSBundle *buddle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ViewController class]] pathForResource:@"LLProgressHUD" ofType:@"bundle"]];
@@ -220,7 +220,7 @@
     LLProgressHUD *hud = [LLProgressHUD show];
     
     hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
-    hud.indicatorImage = [UIImage imageNamed:@"loading"];
+    hud.indicatorImage = [UIImage imageNamed:@"Loading"];
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         [self doSomeWork];
         dispatch_async(dispatch_get_main_queue(), ^{

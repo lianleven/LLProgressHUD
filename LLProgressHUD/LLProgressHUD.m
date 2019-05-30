@@ -74,13 +74,13 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 #pragma mark - Class methods
 
 + (instancetype)HUDAddedToWindow{
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
     
     LLProgressHUD *hud = [LLProgressHUD showHUDAddedTo:window animated:YES];
     return hud;
 }
 + (instancetype)HUDForWindow{
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
     LLProgressHUD *hud = [LLProgressHUD HUDForView:window];
     return hud;
 }
@@ -366,7 +366,7 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
     bezelView.alpha = 0.f;
     [self addSubview:bezelView];
     _bezelView = bezelView;
-    [self updateBezelMotionEffects];
+//    [self updateBezelMotionEffects];
 
     LLTextLabel *label = [LLTextLabel new];
     label.adjustsFontSizeToFitWidth = NO;

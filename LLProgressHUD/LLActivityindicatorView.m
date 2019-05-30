@@ -22,8 +22,8 @@
     if (self = [super initWithFrame:frame]) {
         _hidesWhenStopped = YES;
         _color = [UIColor whiteColor];
-        _activityIndicatorViewStyle = LLActivityindicatorViewStyleSystem;
-        [self setActivityIndicatorViewStyle:LLActivityindicatorViewStyleSystem];
+        _activityIndicatorViewStyle = LLActivityindicatorViewStyleCustom;
+        [self setActivityIndicatorViewStyle:LLActivityindicatorViewStyleCustom];
         
     }
     return self;
