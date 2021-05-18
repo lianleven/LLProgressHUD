@@ -1084,7 +1084,7 @@ static inline void dispatch_sync_main_queue(void (^block)()) {
 
 + (instancetype)hide{
     LLProgressHUD *hud = [LLProgressHUD HUDForWindow];
-    [hud hideAnimated:YES];
+    [hud hideAnimated:NO];
     return hud;
 }
 
